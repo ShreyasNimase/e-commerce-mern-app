@@ -4,18 +4,19 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
+const dotenv = require('dotenv');
 //create a database connection -> u can also
 //create a seperate file for this and then import /use that file
 
-
+dotenv.config();
 
 mongoose.connect(
-    "mongodb+srv://nimaseshreyas3525:shreyas3525@cluster0.y9re7mm.mongodb.net/"
+   process.env.MONGODB_URI
   )
   .then(()=>console.log("MongoDB connected"))
   .catch ((error)=>console.error("MongoDB connection error:", error));
 
-
+console.log("Loaded MONGO_URI:", process.env.MONGO_URI);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
